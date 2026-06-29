@@ -24,7 +24,6 @@ export default function AboutPage() {
         <OurStory />
         <MissionVisionValues />
         <CareerSuccessTeam />
-        <EvolutionTimeline />
         <AccreditationBadges />
       </main>
       <Footer />

@@ -1,3 +1,5 @@
+import { LiquidButton } from "@/components/ui/liquid-button";
+
 export default function ServicesCTA() {
   return (
     <section className="py-section-padding-lg px-gutter">
@@ -10,12 +12,12 @@ export default function ServicesCTA() {
             Engage with our specialists today and discover the strategic advantage of curated career movement.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary px-10 py-4 rounded-full font-label-sm hover:bg-surface-container transition-colors uppercase tracking-widest">
+            <LiquidButton className="uppercase tracking-widest text-sm font-label-sm" variant="inverse-primary">
               Schedule a Call
-            </button>
-            <button className="border border-white text-white px-10 py-4 rounded-full font-label-sm hover:bg-white/10 transition-colors uppercase tracking-widest">
+            </LiquidButton>
+            <LiquidButton className="uppercase tracking-widest text-sm font-label-sm" variant="inverse-secondary">
               Our Success Stories
-            </button>
+            </LiquidButton>
           </div>
         </div>
         {/* Subtle texture */}

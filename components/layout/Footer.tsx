@@ -26,10 +26,10 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="font-bold text-on-surface uppercase tracking-widest text-xs">Navigation</h4>
             <nav className="flex flex-col gap-2">
-              <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Home</Link>
-              <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">About</Link>
-              <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Services</Link>
-              <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Contact</Link>
+              <Link href="/" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Home</Link>
+              <Link href="/about" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">About</Link>
+              <Link href="/services" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Services</Link>
+              <Link href="/contact" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Contact</Link>
             </nav>
           </div>
           <div className="space-y-4">
@@ -37,7 +37,7 @@ export default function Footer() {
             <nav className="flex flex-col gap-2">
               <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Privacy Policy</Link>
               <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Terms of Service</Link>
-              <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Careers</Link>
+
             </nav>
           </div>
         </div>
@@ -65,8 +65,8 @@ export default function Footer() {
         <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-label-sm font-label-sm">
           <span>© {new Date().getFullYear()} Parvata Ventures. All rights reserved.</span>
           <div className="flex gap-8">
-            <span>Dubai</span>
-            <span>New York</span>
+            <span>Davangere</span>
+
           </div>
         </div>
       </div>
