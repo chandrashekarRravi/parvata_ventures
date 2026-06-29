@@ -6,7 +6,7 @@ export default function OurStory() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         <div className="space-y-8 fade-in-up">
           <h2 className="font-headline-md text-headline-md text-primary">
-            The GlobalPath Story
+            The Parvatha Global Ventures Story
           </h2>
           <p className="font-body-lg text-on-surface-variant leading-relaxed">
             Founded with a vision to bridge the gap between elite talent and prestigious organizations, GlobalPath emerged from a desire to humanize the recruitment experience. We saw a world of transactional data and decided to focus on tonal depth and individual narrative.

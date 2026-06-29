@@ -15,7 +15,7 @@ const notoSerif = Noto_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Parvata Ventures | Empowering Your Career Journey",
+  title: "Parvata Global Ventures | Empowering Your Career Journey",
   description: "Redefining professional pathways with intentional design and global reach.",
 };
 

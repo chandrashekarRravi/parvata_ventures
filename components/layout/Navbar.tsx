@@ -1,6 +1,7 @@
 "use client";
 import { LiquidButton } from "../ui/liquid-button";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -8,6 +9,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPastThreshold, setIsPastThreshold] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,19 +34,18 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`docked full-width top-0 sticky z-50 bg-background/90 backdrop-blur-md transition-shadow duration-300 ${
-          isScrolled ? "shadow-sm" : ""
-        }`}
+        className={`docked full-width top-0 sticky z-50 bg-background/90 backdrop-blur-md transition-shadow duration-300 ${isScrolled ? "shadow-sm" : ""
+          }`}
       >
         <div className="flex justify-between items-center w-full px-gutter py-4 max-w-container-max mx-auto">
           <div className="flex items-center gap-2">
             <Link href="/">
               <span className="font-display-lg text-headline-md tracking-tight text-primary">
-                Parvata Ventures
+                Parvatha Global Ventures
               </span>
             </Link>
           </div>
-          
+
           <motion.div layout className="flex items-center gap-4">
             {/* Desktop inline links */}
             <AnimatePresence mode="popLayout">
@@ -57,15 +58,22 @@ export default function Navbar() {
                   transition={{ duration: 0.3 }}
                   className="hidden md:flex gap-8 items-center mr-4"
                 >
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      className="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors duration-300 whitespace-nowrap"
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
+                  {navLinks.map((link) => {
+                    const isActive = pathname === link.href;
+                    return (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className={`font-label-sm text-label-sm transition-colors duration-300 whitespace-nowrap ${
+                          isActive 
+                            ? "text-primary border-b-2 border-primary pb-1 font-bold" 
+                            : "text-on-surface-variant hover:text-primary"
+                        }`}
+                      >
+                        {link.name}
+                      </Link>
+                    );
+                  })}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -78,8 +86,8 @@ export default function Navbar() {
             <motion.button
               layout
               initial={false}
-              animate={{ 
-                width: isPastThreshold ? 48 : 0, 
+              animate={{
+                width: isPastThreshold ? 48 : 0,
                 opacity: isPastThreshold ? 1 : 0,
                 marginLeft: isPastThreshold ? 8 : 0,
               }}
@@ -90,7 +98,7 @@ export default function Navbar() {
             >
               <span className="material-symbols-outlined">menu</span>
             </motion.button>
-            
+
             {/* Mobile-only toggle */}
             <button
               onClick={() => setIsDrawerOpen(true)}
@@ -133,22 +141,27 @@ export default function Navbar() {
                 </button>
               </div>
               <div className="flex flex-col gap-6 p-8">
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.05 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsDrawerOpen(false)}
-                      className="font-headline-md text-3xl md:text-4xl text-on-surface hover:text-primary transition-colors block"
+                {navLinks.map((link, i) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.05 }}
                     >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsDrawerOpen(false)}
+                        className={`font-headline-md text-3xl md:text-4xl transition-colors block ${
+                          isActive ? "text-primary font-bold" : "text-on-surface hover:text-primary"
+                        }`}
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
               <div className="mt-auto p-8 border-t border-outline-variant/30 bg-background/50">
                 <p className="font-label-sm uppercase tracking-widest text-primary mb-4">

@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-surface-container dark:bg-surface-container-high border-t border-outline-variant/30">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-stack-space px-gutter py-section-padding-sm max-w-container-max mx-auto">
         <div className="space-y-4">
-          <span className="font-display-lg text-headline-md text-primary">Parvata Ventures</span>
+          <span className="font-display-lg text-headline-md text-primary">Parvatha Global Ventures</span>
           <p className="text-on-surface-variant max-w-xs font-body-md text-body-md">
             Redefining professional pathways with intentional design and global reach.
           </p>
@@ -63,7 +63,7 @@ export default function Footer() {
 
       <div className="border-t border-outline-variant/30 py-8 px-gutter">
         <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-label-sm font-label-sm">
-          <span>© {new Date().getFullYear()} Parvata Ventures. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Parvatha Global Ventures. All rights reserved.</span>
           <div className="flex gap-8">
             <span>Davangere</span>
 

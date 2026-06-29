@@ -6,7 +6,8 @@ export default function PartnersGrid() {
     "https://lh3.googleusercontent.com/aida-public/AB6AXuDtWfHVpYpM68x_zE__v3JaPtwLPhWwPyaDFHZZhFn7OHxm1RCMeM698bfNtsaasWukHjOZ-FV4C32PCagwZ7RUHCBan9FH5yWqH0JvpQy7Lz56FSIgzcQhefCan_mJVZXjpEuZMqcOm1_-6CmuvuR9pDQE5vfvuNPUf4kBBef19CCiNrFez070fMw2arNouqi8JoNfvl1EQl02ySSZVDiHrczgE5lOhXBAXxr9lt9cKxMgCz9aqt_f50OYN6ClDowu8pkN2Vj9BRFX",
     "https://lh3.googleusercontent.com/aida-public/AB6AXuDeQq_dQFwz1clFwZcIOJEIVC8_YsfxncYOZKedAUo7qDsfVBNqPXa6czfcUxUc14YPy9q5hUhEI5uY_OTuNg2FCui0QPV98aIku-WhkDB3BId1RsfWtvpnzSB1SV_-wzaFCvd94RJLzopGPitJO8KsW37815w95rf45rSOCYaoSxo_OkbuPj83TvN07FaG6QikyuB3eb86K7a8mNa23gEi5tkBNkq0MlUbmtnEcq2bAtCgw6b95Q7vphukLyN--VX5jFIEyU7AGxdb",
     "https://lh3.googleusercontent.com/aida-public/AB6AXuCvkaCOi21xKBE6yJs0dmToFvLGpPY7dYzXmnsZu_LcpiJ4GjokIFKrRVIwz51UtMGoR0QoVQLBoaWxfi2hxNJu6X0YLVRmhBBBFIYGY9NpzKwlpzcmzBZyxwvRnhGmEfahk4C_L0_PvCJS3JtopnwNQeecbLDhJfjZQmvC-P4YcPHf1nQ-c_Uv7P7abj-FIqx78BviPdZN0RCopG43woJMyjS2_Fs5lxTJDDpMKPoud0eR1I1wvm4gEcd-nuX6y57y1LxjjCTU5ktg",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuALUdZYb3Ooel_iqsltjJcGrH7IRatfstn7a5PTtSPtlmuXrdI_a14WC27VBwMJQqnB0-BwuPbaFNY0KMB2xRiWxiZ5QJOljN2PCfpkXWMcLYKoa145ApYvUNDVwhHf_OzplbQGXzhwxTPx4kuVcxeiKGH-G7yJ3eZfe_LSZZtnCKOCuSSpGwBs1IV2UX5j5pdvfWNr7NWDgKI06fzKxMMy_ffYHKXNvPCcqTBqOfmmK4_ATOx9ZJwDxQowqmVsQ2aLKfQ1d8I0D28g"
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuALUdZYb3Ooel_iqsltjJcGrH7IRatfstn7a5PTtSPtlmuXrdI_a14WC27VBwMJQqnB0-BwuPbaFNY0KMB2xRiWxiZ5QJOljN2PCfpkXWMcLYKoa145ApYvUNDVwhHf_OzplbQGXzhwxTPx4kuVcxeiKGH-G7yJ3eZfe_LSZZtnCKOCuSSpGwBs1IV2UX5j5pdvfWNr7NWDgKI06fzKxMMy_ffYHKXNvPCcqTBqOfmmK4_ATOx9ZJwDxQowqmVsQ2aLKfQ1d8I0D28g",
+
   ];
 
   const uniLogos = [
@@ -44,7 +45,7 @@ export default function PartnersGrid() {
                   <div className="relative w-full h-full">
                     <Image
                       src={src}
-                      alt={`Corporate logo ${i+1}`}
+                      alt={`Corporate logo ${i + 1}`}
                       fill
                       className="object-contain grayscale group-hover:grayscale-0 transition-all opacity-60 group-hover:opacity-100 p-2"
                     />
@@ -63,7 +64,7 @@ export default function PartnersGrid() {
                   <div className="relative w-full h-full">
                     <Image
                       src={src}
-                      alt={`University logo ${i+1}`}
+                      alt={`University logo ${i + 1}`}
                       fill
                       className="object-contain grayscale group-hover:grayscale-0 transition-all opacity-60 group-hover:opacity-100 p-2"
                     />
