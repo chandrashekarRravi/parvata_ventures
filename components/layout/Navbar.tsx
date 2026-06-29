@@ -36,25 +36,25 @@ export default function Navbar() {
             Home
           </Link>
           <Link
-            href="#about"
+            href="/about"
             className="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors duration-300"
           >
             About
           </Link>
           <Link
-            href="#services"
+            href="/services"
             className="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors duration-300"
           >
             Services
           </Link>
           <Link
-            href="#clients"
+            href="/clients"
             className="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors duration-300"
           >
             Clients
           </Link>
           <Link
-            href="#contact"
+            href="/contact"
             className="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors duration-300"
           >
             Contact

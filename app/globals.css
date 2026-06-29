@@ -121,4 +121,13 @@
     opacity: 1;
     transform: translateY(0);
   }
+  
+  .text-editorial {
+    @apply italic;
+    font-family: var(--font-noto-serif), serif;
+  }
+  
+  .timeline-line {
+    background: linear-gradient(to bottom, transparent, var(--color-primary), transparent);
+  }
 }
