@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { LiquidButton } from "@/components/ui/liquid-button";
-import PlugConnectedIcon from "@/components/ui/plug-connected-icon";
 
 export default function ClientsHero() {
   return (
@@ -17,7 +17,12 @@ export default function ClientsHero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 to-background"></div>
       </div>
-      <div className="relative z-10 max-w-container-max px-gutter text-center fade-in-up">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 max-w-container-max px-gutter text-center"
+      >
         <span className="font-label-sm uppercase tracking-widest text-primary mb-6 block">Our Network & Impact</span>
         <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-8 max-w-4xl mx-auto">
           Connecting Global Talent with Prestigious Partners
@@ -41,7 +46,7 @@ export default function ClientsHero() {
             View Impact
           </LiquidButton>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function WhyChooseUs() {
   const benefits = [
@@ -24,13 +26,25 @@ export default function WhyChooseUs() {
       <div className="max-w-container-max mx-auto px-gutter">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-          <div className="lg:col-span-5 space-y-8 fade-in-up">
-            <h2 className="font-display-lg text-display-lg-mobile md:text-headline-md text-on-surface">
+          <div className="lg:col-span-5 space-y-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display-lg text-display-lg-mobile md:text-headline-md text-on-surface"
+            >
               Redefining the <br /> Human Connection
-            </h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-on-surface-variant font-body-lg text-body-lg"
+            >
               At GlobalPath, we believe recruitment should feel like an editorial experience—sophisticated, intentional, and personally curated.
-            </p>
+            </motion.p>
 
             <div className="space-y-6">
               {benefits.map((benefit, index) => (
@@ -61,7 +75,13 @@ export default function WhyChooseUs() {
               </div>
             </div>
 
-            <div className="space-y-4 fade-in-up" style={{ transitionDelay: "200ms" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-4"
+            >
               <div className="bg-secondary rounded-lg p-8 aspect-square flex flex-col justify-end">
                 <p className="text-on-primary italic font-body-lg text-body-lg">
                   &quot;The transition was seamless, professional, and truly felt like a boutique experience.&quot;
@@ -75,7 +95,7 @@ export default function WhyChooseUs() {
                   className="object-cover"
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
 
         </div>

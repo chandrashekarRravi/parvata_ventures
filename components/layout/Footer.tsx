@@ -1,11 +1,27 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="bg-surface-container dark:bg-surface-container-high border-t border-outline-variant/30">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-stack-space px-gutter py-section-padding-sm max-w-container-max mx-auto">
         <div className="space-y-4">
-          <span className="font-display-lg text-headline-md text-primary">Parvatha Global Ventures</span>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/PGV-LOGO-OP-4.png"
+              alt="Parvata Global Ventures Logo"
+              width={100}
+              height={100}
+              className="h-14 w-auto object-contain"
+            />
+            <Image
+              src="/PGV-WORDLOGO-OP-3.png"
+              alt="Parvata Global Ventures Text"
+              width={240}
+              height={80}
+              className="h-9 w-auto object-contain"
+            />
+          </div>
           <p className="text-on-surface-variant max-w-xs font-body-md text-body-md">
             Redefining professional pathways with intentional design and global reach.
           </p>

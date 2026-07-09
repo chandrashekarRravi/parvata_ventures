@@ -32,11 +32,11 @@ export function LiquidButton({
     textHoverClass = "group-hover:text-primary";
     fillClass = "bg-white";
   } else if (isSecondary) {
-    baseClasses = "border border-on-primary/30 text-on-primary";
-    textHoverClass = "group-hover:text-on-primary-container";
-    fillClass = "bg-primary";
+    baseClasses = "border border-secondary text-secondary";
+    textHoverClass = "group-hover:text-on-secondary";
+    fillClass = "bg-secondary";
   } else {
-    baseClasses = "bg-primary-container text-on-primary-container";
+    baseClasses = "bg-primary text-on-primary";
     textHoverClass = "group-hover:text-primary";
     fillClass = "bg-white";
   }

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function AboutHero() {
   const bgRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,12 @@ export default function AboutHero() {
           }}
         ></div>
       </div>
-      <div className="relative z-20 text-center px-gutter max-w-4xl fade-in-up">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-20 text-center px-gutter max-w-4xl"
+      >
         <span className="text-on-primary font-label-sm uppercase tracking-widest block mb-6">
           Our Legacy
         </span>
@@ -38,7 +44,7 @@ export default function AboutHero() {
         <p className="text-on-primary/90 font-body-lg max-w-2xl mx-auto">
           We believe in the power of human potential. GlobalPath is more than a recruitment agency; we are architects of professional identity.
         </p>
-      </div>
+      </motion.div>
     </header>
   );
 }

@@ -44,13 +44,13 @@ const servicesData: ServiceItem[] = [
     href: "#",
   },
   {
-    id: "employers",
-    title: "Employers",
-    description: "Strategic talent acquisition and executive search for industry leaders.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtRNuEiwW1TouxeWj0qZH_BlPHEYSYo76geQ74UTZ8YrcLdUoUhMZMkpkjSnIG2CJoGj5UZ7-H1LYlmAd60ArDh5ZMxqvaygQZ_QU-nWcffked_aqK2FUkcwnh13oT8Mi0TUd57hU7_bw1DVeC_oWLYHZww38i3pluuu7fHAeQW-MAReFGuZXcHBhbgaa8QTUQGBbK-L5TVuZfZowOkLiuQPP1yQHF0CGvXMdOXt0HapA6UF2Vz030kfiDrsEYfRsCy5WOh8lpurQ9",
-    imageAlt: "Two executives having a thoughtful discussion",
-    linkText: "Partner with Us",
-    hoverText: "Build Your Team",
+    id: "Event Management",
+    title: "Event Management",
+    description: "Event Management",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQ5_24GLUUC5MtTQJUqRJ8D37Ti5jm2Zto-eJENIWeGqgI0MRcU0jndwp9l24r0OBnKRjBgp5UxD0NmmXSMVZAX8dY_wAs4DnL-Ec1QIUr5_vDaQH4jD_xD7cpPdB_w28r9u3OqnDrVUwW-FbnycsdonInbWp-Sh66IyVJ6ro7CZYA0Yhhz3x7CYFH4ovdPU2SkpDSBryffxvfQakJE-aqueQPBQsYNV1ovJ9oGAiCUsPmGMryUMKI4YEchktE7sUzT5Qa5oz7-UyP",
+    imageAlt: "Person holding leather passport holder at airport",
+    linkText: "Event Management",
+    hoverText: "Let's Make it Memorable",
     href: "#",
   }
 ];
@@ -59,8 +59,8 @@ function ServiceCard({ service }: { service: ServiceItem }) {
   return (
     <div className="group bg-surface-container-low p-2 rounded-lg border border-outline-variant hover:border-primary transition-colors duration-500 fade-in-up">
       <div className="aspect-[4/5] rounded-DEFAULT overflow-hidden mb-6 relative">
-        <Image 
-          src={service.image} 
+        <Image
+          src={service.image}
           alt={service.imageAlt}
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -97,7 +97,7 @@ export default function Services() {
             Specialized pathways designed for ambitious professionals and forward-thinking organizations.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {servicesData.map(service => (
             <ServiceCard key={service.id} service={service} />
