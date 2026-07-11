@@ -5,10 +5,13 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import TextReveal from "@/components/forgeui/text-reveal";
 
 const services = [
-  "Career Guidance",
-  "Admissions Support",
-  "Skill Development",
-  "Placement Assistance",
+  "Education Consultancy",
+  "Overseas MBBS Admissions",
+  "International Job Placement",
+  "Domestic Job Placement",
+  "Event Management",
+  "Tourism Services",
+  "Marketing & Admission Support",
 ];
 
 function CyclingServices() {
@@ -49,9 +52,8 @@ function CyclingServices() {
               <span className="w-3" />
             )}
             <span
-              className={`text-sm font-medium transition-colors duration-300 ${
-                isActive ? "text-on-primary" : "text-on-primary/30"
-              }`}
+              className={`text-sm font-medium transition-colors duration-300 ${isActive ? "text-on-primary" : "text-on-primary/30"
+                }`}
               style={{ fontFamily: "var(--font-body-lg)" }}
             >
               {service}
@@ -100,7 +102,7 @@ export default function Hero() {
   };
 
   return (
-    <section 
+    <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
       className="relative min-h-screen flex flex-col overflow-hidden bg-[#0a0806]"
@@ -112,15 +114,19 @@ export default function Hero() {
 
         {/* Always-rendered crossfade layers — avoids black flash */}
 
-        {/* Layer 1: GIF */}
+        {/* Layer 1: H.mp4 */}
         <motion.div
           animate={{ opacity: bgIndex === 0 ? 1 : 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
           className="absolute inset-0"
         >
-          <div
-            className="w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: "url('/H-gif.gif')" }}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+            src="/H.mp4"
           />
         </motion.div>
 
@@ -246,7 +252,7 @@ export default function Hero() {
 
 
       {/* ── Main content ── */}
-      <motion.div 
+      <motion.div
         className="relative z-10 flex-1 flex items-center px-6 md:px-16 lg:px-24 py-24 max-w-[1280px] mx-auto w-full"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       >
@@ -255,7 +261,7 @@ export default function Hero() {
           {/* LEFT: Headline + body + CTA */}
           <div className="space-y-8 max-w-[800px]">
             {/* Small label */}
-            <div 
+            <div
               className="flex items-center gap-3"
               style={{
                 color: "#e37343",
@@ -364,8 +370,8 @@ export default function Hero() {
           >
             You&apos;re in good company
           </span>
-          
-          <div 
+
+          <div
             className="w-full overflow-hidden relative py-2"
             style={{
               maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",

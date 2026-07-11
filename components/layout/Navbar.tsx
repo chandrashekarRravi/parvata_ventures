@@ -52,6 +52,7 @@ export default function Navbar() {
                 width={100}
                 height={100}
                 className="h-16 w-auto object-contain"
+                style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.7)) drop-shadow(0 0 16px rgba(0,0,0,0.5))" }}
                 priority
               />
               <Image
@@ -60,6 +61,7 @@ export default function Navbar() {
                 width={240}
                 height={80}
                 className="h-10 w-auto object-contain"
+                style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.7)) drop-shadow(0 0 16px rgba(0,0,0,0.5))" }}
                 priority
               />
             </motion.div>
@@ -72,6 +74,7 @@ export default function Navbar() {
                 width={100}
                 height={100}
                 className="h-8 w-auto object-contain"
+                style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.8))" }}
                 priority
               />
               <Image
@@ -80,6 +83,7 @@ export default function Navbar() {
                 width={240}
                 height={80}
                 className="h-5 w-auto object-contain"
+                style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.8))" }}
                 priority
               />
             </div>

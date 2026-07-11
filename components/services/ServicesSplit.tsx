@@ -1,145 +1,164 @@
+import Link from "next/link";
+
+const allServices = [
+  {
+    id: "education-consultancy",
+    icon: "school",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    title: "Education Consultancy",
+    description: "Expert guidance for academic planning, admissions, and career development tailored to each student's unique goals and aspirations.",
+    tags: ["Academic Planning", "Career Development", "Admissions"],
+    roadmap: [
+      { step: "01", title: "Profile Assessment", detail: "Understanding your academic background and goals." },
+      { step: "02", title: "Institution Matching", detail: "Identifying the best-fit programs and universities." },
+      { step: "03", title: "Application Support", detail: "End-to-end guidance through the application process." },
+    ],
+  },
+  {
+    id: "overseas-mbbs",
+    icon: "local_hospital",
+    color: "text-secondary",
+    bg: "bg-secondary/10",
+    title: "Overseas MBBS Admissions",
+    description: "End-to-end assistance for securing MBBS admissions at reputed international universities across Russia, Kazakhstan, Philippines, Georgia, and more.",
+    tags: ["MBBS Abroad", "University Selection", "Visa Support"],
+    roadmap: [
+      { step: "01", title: "Eligibility Check", detail: "Verifying NEET scores and academic requirements." },
+      { step: "02", title: "University Selection", detail: "Choosing MCI/NMC recognised universities." },
+      { step: "03", title: "Documentation & Visa", detail: "Complete paperwork and visa processing support." },
+    ],
+  },
+  {
+    id: "international-jobs",
+    icon: "flight_takeoff",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    title: "International Job Placement",
+    description: "Career opportunities in the Education, Healthcare, and Tourism sectors across various countries, with full pre-departure and post-arrival support.",
+    tags: ["Healthcare", "Education", "Tourism", "Global"],
+    roadmap: [
+      { step: "01", title: "Career Mapping", detail: "Aligning your profile with global market demands." },
+      { step: "02", title: "Job Matching", detail: "Connecting you with verified international employers." },
+      { step: "03", title: "Visa & Onboarding", detail: "Work visa assistance and pre-departure guidance." },
+    ],
+  },
+  {
+    id: "domestic-jobs",
+    icon: "location_on",
+    color: "text-secondary",
+    bg: "bg-secondary/10",
+    title: "Domestic Job Placement",
+    description: "Employment opportunities across all sectors throughout India, connecting candidates with leading employers for roles at all levels.",
+    tags: ["All Sectors", "Pan-India", "All Levels"],
+    roadmap: [
+      { step: "01", title: "Skills Audit", detail: "Defining your strengths and marketable skills." },
+      { step: "02", title: "Employer Connect", detail: "Direct introductions to leading Indian companies." },
+      { step: "03", title: "Interview Prep", detail: "Coaching to maximize your interview performance." },
+    ],
+  },
+  {
+    id: "event-management",
+    icon: "celebration",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    title: "Event Management",
+    description: "Professional planning and execution of educational, corporate, and special events — from concept to completion with seamless delivery.",
+    tags: ["Corporate Events", "Educational", "Special Occasions"],
+    roadmap: [
+      { step: "01", title: "Concept Design", detail: "Crafting a unique vision and event blueprint." },
+      { step: "02", title: "Logistics & Vendor", detail: "Managing all logistics, vendors, and timelines." },
+      { step: "03", title: "Execution & Debrief", detail: "Flawless delivery and post-event reporting." },
+    ],
+  },
+  {
+    id: "tourism",
+    icon: "travel_explore",
+    color: "text-secondary",
+    bg: "bg-secondary/10",
+    title: "Tourism Services",
+    description: "Customized travel solutions including tour planning, visa assistance, accommodation, and comprehensive travel support for individuals and groups.",
+    tags: ["Visa Assistance", "Tour Planning", "Group Travel"],
+    roadmap: [
+      { step: "01", title: "Itinerary Design", detail: "Personalized travel plans matching your preferences." },
+      { step: "02", title: "Visa Processing", detail: "Hassle-free visa documentation and submission." },
+      { step: "03", title: "Travel Support", detail: "On-ground assistance throughout your journey." },
+    ],
+  },
+  {
+    id: "marketing-admissions",
+    icon: "campaign",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    title: "Marketing & Admission Support",
+    description: "Strategic marketing, student recruitment, branding, and admission assistance to help schools and colleges grow their enrolment and reputation.",
+    tags: ["Branding", "Student Recruitment", "Digital Marketing"],
+    roadmap: [
+      { step: "01", title: "Brand Audit", detail: "Assessing current visibility and market positioning." },
+      { step: "02", title: "Campaigns & Outreach", detail: "Targeted campaigns to attract prospective students." },
+      { step: "03", title: "Enrolment Drive", detail: "End-to-end admission funnel management." },
+    ],
+  },
+];
+
 export default function ServicesSplit() {
   return (
     <section className="py-section-padding-lg px-gutter max-w-container-max mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 relative">
-        {/* Vertical Divider (Desktop) */}
-        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-outline to-transparent -translate-x-1/2"></div>
-        
-        {/* Job Consultancy Column */}
-        <div className="fade-in-up space-y-12 pr-0 lg:pr-12">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <span className="material-symbols-outlined text-3xl">work</span>
-            </div>
-            <h2 className="font-headline-md text-headline-md">Job Consultancy</h2>
-          </div>
-          <div className="space-y-8">
-            {/* Service Item 1 */}
-            <div className="group border-b border-outline-variant pb-8">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-headline-md text-xl font-medium">Strategic Resume Building</h3>
-                <span className="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">edit_document</span>
+      <div className="space-y-24">
+        {allServices.map((service, index) => (
+          <div
+            key={service.id}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? "lg:grid-flow-dense" : ""}`}
+          >
+            {/* Content Side */}
+            <div className={`fade-in-up space-y-6 ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
+              <div className="flex items-center gap-4">
+                <div className={`w-14 h-14 rounded-full ${service.bg} flex items-center justify-center ${service.color}`}>
+                  <span className="material-symbols-outlined text-3xl">{service.icon}</span>
+                </div>
+                <div>
+                  <span className="font-label-sm text-primary uppercase tracking-[0.15em] text-xs block mb-1">
+                    Service {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="font-headline-md text-headline-md">{service.title}</h2>
+                </div>
               </div>
-              <p className="text-on-surface-variant font-body-md mb-6">Crafting high-impact narratives that pass ATS filters and capture recruiter attention through data-driven storytelling.</p>
+              <p className="text-on-surface-variant font-body-lg leading-relaxed">{service.description}</p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-surface-container rounded-full text-[10px] uppercase font-bold tracking-wider text-secondary">ATS Optimization</span>
-                <span className="px-3 py-1 bg-surface-container rounded-full text-[10px] uppercase font-bold tracking-wider text-secondary">Brand Voice</span>
+                {service.tags.map(tag => (
+                  <span key={tag} className="px-3 py-1 bg-surface-container rounded-full text-[10px] uppercase font-bold tracking-wider text-secondary">
+                    {tag}
+                  </span>
+                ))}
               </div>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase tracking-widest group/link mt-2"
+              >
+                <span className="border-b border-primary/0 group-hover/link:border-primary transition-colors duration-300">Get Started</span>
+                <span className="material-symbols-outlined text-sm transition-all duration-300 group-hover/link:translate-x-1">arrow_forward</span>
+              </Link>
             </div>
-            {/* Service Item 2 */}
-            <div className="group border-b border-outline-variant pb-8">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-headline-md text-xl font-medium">Global Network Placement</h3>
-                <span className="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">hub</span>
-              </div>
-              <p className="text-on-surface-variant font-body-md mb-6">Direct access to our exclusive network of Fortune 500 partners and boutique firms worldwide.</p>
-            </div>
-            {/* Service Item 3 */}
-            <div className="group border-b border-outline-variant pb-8">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-headline-md text-xl font-medium">Interview Performance Coaching</h3>
-                <span className="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">record_voice_over</span>
-              </div>
-              <p className="text-on-surface-variant font-body-md mb-6">Master the art of psychological persuasion and behavioral interviews with seasoned HR leads.</p>
-            </div>
-          </div>
-          
-          {/* Roadmap Job */}
-          <div className="bg-surface-container rounded-lg p-8">
-            <h4 className="font-label-sm text-primary uppercase tracking-widest mb-6">The Job Pathway</h4>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <span className="font-display-lg text-2xl text-outline opacity-30">01</span>
-                <div>
-                  <p className="font-bold">Discovery Audit</p>
-                  <p className="text-sm text-on-surface-variant">Defining your unique value proposition.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="font-display-lg text-2xl text-outline opacity-30">02</span>
-                <div>
-                  <p className="font-bold">Portfolio Forge</p>
-                  <p className="text-sm text-on-surface-variant">Reconstructing your professional assets.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="font-display-lg text-2xl text-outline opacity-30">03</span>
-                <div>
-                  <p className="font-bold">Direct Entry</p>
-                  <p className="text-sm text-on-surface-variant">Targeted introductions to key decision makers.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Education Consultancy Column */}
-        <div className="fade-in-up space-y-12 pl-0 lg:pl-12">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
-              <span className="material-symbols-outlined text-3xl">school</span>
-            </div>
-            <h2 className="font-headline-md text-headline-md">Education Consultancy</h2>
-          </div>
-          <div className="space-y-8">
-            {/* Service Item 1 */}
-            <div className="group border-b border-outline-variant pb-8">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-headline-md text-xl font-medium">International Visa Guidance</h3>
-                <span className="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">password</span>
-              </div>
-              <p className="text-on-surface-variant font-body-md mb-6">End-to-end management of complex visa protocols and documentation for premium global institutions.</p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-surface-container rounded-full text-[10px] uppercase font-bold tracking-wider text-secondary">Compliance</span>
-                <span className="px-3 py-1 bg-surface-container rounded-full text-[10px] uppercase font-bold tracking-wider text-secondary">Fast-track</span>
-              </div>
-            </div>
-            {/* Service Item 2 */}
-            <div className="group border-b border-outline-variant pb-8">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-headline-md text-xl font-medium">Elite University Placement</h3>
-                <span className="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">account_balance</span>
-              </div>
-              <p className="text-on-surface-variant font-body-md mb-6">Strategic application mentorship for Ivy League, Oxbridge, and premier global universities.</p>
-            </div>
-            {/* Service Item 3 */}
-            <div className="group border-b border-outline-variant pb-8">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-headline-md text-xl font-medium">Scholarship Acquisition</h3>
-                <span className="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">payments</span>
-              </div>
-              <p className="text-on-surface-variant font-body-md mb-6">Identifying and securing merit-based funding and grants to fuel your academic journey.</p>
-            </div>
-          </div>
-          
-          {/* Roadmap Education */}
-          <div className="bg-surface-container-high rounded-lg p-8">
-            <h4 className="font-label-sm text-primary uppercase tracking-widest mb-6">The Academic Pathway</h4>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <span className="font-display-lg text-2xl text-outline opacity-30">01</span>
-                <div>
-                  <p className="font-bold">Institution Matching</p>
-                  <p className="text-sm text-on-surface-variant">Selecting schools that align with career ROI.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="font-display-lg text-2xl text-outline opacity-30">02</span>
-                <div>
-                  <p className="font-bold">Narrative Design</p>
-                  <p className="text-sm text-on-surface-variant">Crafting powerful statements of purpose.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="font-display-lg text-2xl text-outline opacity-30">03</span>
-                <div>
-                  <p className="font-bold">Legal Onboarding</p>
-                  <p className="text-sm text-on-surface-variant">Full logistical and immigration support.</p>
-                </div>
+            {/* Roadmap Side */}
+            <div className={`bg-surface-container-low rounded-xl p-8 ${index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}`}>
+              <h4 className="font-label-sm text-primary uppercase tracking-widest mb-6 text-xs">How It Works</h4>
+              <div className="space-y-6">
+                {service.roadmap.map(step => (
+                  <div key={step.step} className="flex gap-5 group">
+                    <span className="font-display-lg text-3xl text-outline opacity-20 group-hover:opacity-60 transition-opacity duration-300 leading-none mt-0.5">
+                      {step.step}
+                    </span>
+                    <div className="border-b border-outline-variant pb-5 flex-1">
+                      <p className="font-bold text-on-surface mb-1">{step.title}</p>
+                      <p className="text-sm text-on-surface-variant">{step.detail}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   );
