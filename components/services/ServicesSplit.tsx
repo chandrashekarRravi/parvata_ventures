@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
 
 const allServices = [
   {
@@ -101,6 +104,71 @@ const allServices = [
   },
 ];
 
+function RoadmapSteps({ roadmap }: { roadmap: typeof allServices[0]["roadmap"] }) {
+  const [activeStep, setActiveStep] = useState(0);
+  const hovered = useRef<number | null>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only auto-cycle if no step is being hovered
+      if (hovered.current === null) {
+        setActiveStep((prev) => (prev + 1) % roadmap.length);
+      }
+    }, 1200);
+    return () => clearInterval(interval);
+  }, [roadmap.length]);
+
+  return (
+    <div className="space-y-4">
+      {roadmap.map((step, i) => {
+        const isActive = activeStep === i;
+        return (
+          <div
+            key={step.step}
+            className="flex gap-5 cursor-pointer group"
+            onMouseEnter={() => {
+              hovered.current = i;
+              setActiveStep(i);
+            }}
+            onMouseLeave={() => {
+              hovered.current = null;
+            }}
+          >
+            <span
+              className={`font-display-lg text-3xl leading-none mt-0.5 transition-all duration-300 ${
+                isActive ? "text-primary opacity-100 scale-110" : "text-outline opacity-20"
+              }`}
+            >
+              {step.step}
+            </span>
+            <div
+              className={`border-b pb-5 flex-1 transition-all duration-300 ${
+                isActive ? "border-primary/40" : "border-outline-variant"
+              }`}
+            >
+              <p
+                className={`font-bold mb-1 transition-colors duration-300 ${
+                  isActive ? "text-primary" : "text-on-surface"
+                }`}
+              >
+                {step.title}
+              </p>
+            <div
+              className={`transition-all duration-300 overflow-hidden ${
+                isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"
+              }`}
+              style={{ height: isActive ? "auto" : 0 }}
+            >
+              <p className="text-sm text-on-surface-variant pt-0.5">{step.detail}</p>
+            </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function ServicesSplit() {
   return (
     <section className="py-section-padding-lg px-gutter max-w-container-max mx-auto">
@@ -143,19 +211,7 @@ export default function ServicesSplit() {
             {/* Roadmap Side */}
             <div className={`bg-surface-container-low rounded-xl p-8 ${index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}`}>
               <h4 className="font-label-sm text-primary uppercase tracking-widest mb-6 text-xs">How It Works</h4>
-              <div className="space-y-6">
-                {service.roadmap.map(step => (
-                  <div key={step.step} className="flex gap-5 group">
-                    <span className="font-display-lg text-3xl text-outline opacity-20 group-hover:opacity-60 transition-opacity duration-300 leading-none mt-0.5">
-                      {step.step}
-                    </span>
-                    <div className="border-b border-outline-variant pb-5 flex-1">
-                      <p className="font-bold text-on-surface mb-1">{step.title}</p>
-                      <p className="text-sm text-on-surface-variant">{step.detail}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <RoadmapSteps roadmap={service.roadmap} />
             </div>
           </div>
         ))}

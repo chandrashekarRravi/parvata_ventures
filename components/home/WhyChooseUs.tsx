@@ -82,8 +82,8 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-4"
             >
-              <div className="bg-secondary rounded-lg p-8 aspect-square flex flex-col justify-end">
-                <p className="text-on-primary italic font-body-lg text-body-lg">
+              <div className="bg-secondary rounded-lg p-6 md:p-8 aspect-square flex flex-col justify-end">
+                <p className="text-on-primary italic font-body-lg text-base md:text-xl leading-snug">
                   &quot;The transition was seamless, professional, and truly felt like a boutique experience.&quot;
                 </p>
               </div>

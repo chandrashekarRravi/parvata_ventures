@@ -1,35 +1,29 @@
 "use client";
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useParallaxScroll } from "@/hooks/useParallaxScroll";
 
 export default function AboutHero() {
-  const bgRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY;
-      if (bgRef.current) {
-        bgRef.current.style.transform = `translateY(${scrolled * 0.4}px)`;
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const bgRef = useParallaxScroll(0.4);
 
   return (
     <header className="relative w-full h-[716px] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-black/40 z-10"></div>
-      <div className="absolute inset-0 z-0">
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
+      
+      {/* Bottom fog — fades hero into the page background */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-48 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, var(--color-background))" }}
+      />
+
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <div
           ref={bgRef}
-          className="w-full h-full bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJskoqZZpK7MMqpjnAvoXkvR2ro2FY5P9qFZz6EwoXJPwlFN-nPNyMw9LliWjcgzkszhFvXklJrw31hbk4ohR3_HbdKyishobkqN9UQ8Ug7Y0Dj62vVIx83iwd0-7TaBTqzsuYaFT-8I6qJDHz1z26a_w_keLFpXPvLCrpEAevvg8iVJ6d6DlLA5TyZjWwkOVCRbL-HxFVfSaSohwK2eIMJJeLyFZrAzBa2vNUQ9FIoA_aIc9DSJdwONSIfkgWGsTTRcVjUzPxebgW')",
-          }}
-        ></div>
+          className="w-full h-[130%] bg-cover bg-center will-change-transform"
+          style={{ backgroundImage: "url('/abt.png')" }}
+        />
       </div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}

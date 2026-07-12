@@ -4,9 +4,11 @@ import FadeInUpObserver from "@/components/utils/FadeInUpObserver";
 import AboutHero from "@/components/about/AboutHero";
 import OurStory from "@/components/about/OurStory";
 import MissionVisionValues from "@/components/about/MissionVisionValues";
+import LeadershipMessages from "@/components/about/LeadershipMessages";
 import CareerSuccessTeam from "@/components/about/CareerSuccessTeam";
 import EvolutionTimeline from "@/components/about/EvolutionTimeline";
 import AccreditationBadges from "@/components/about/AccreditationBadges";
+import SectionDivider from "@/components/ui/SectionDivider";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -22,8 +24,13 @@ export default function AboutPage() {
       <main>
         <AboutHero />
         <OurStory />
+        <SectionDivider />
         <MissionVisionValues />
+        <SectionDivider />
+        <LeadershipMessages />
+        <SectionDivider />
         <CareerSuccessTeam />
+        <SectionDivider />
         <AccreditationBadges />
       </main>
       <Footer />

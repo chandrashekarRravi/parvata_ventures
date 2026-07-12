@@ -6,6 +6,7 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 import ConsultationCTA from "@/components/home/ConsultationCTA";
 import Footer from "@/components/layout/Footer";
 import FadeInUpObserver from "@/components/utils/FadeInUpObserver";
+import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Home() {
   return (
@@ -23,3 +24,4 @@ export default function Home() {
     </>
   );
 }
+

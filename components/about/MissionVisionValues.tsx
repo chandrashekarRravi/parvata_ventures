@@ -8,8 +8,8 @@ const ICONS = [
   "travel_explore", "campaign", "public", "work", "groups", "auto_stories", "apartment"
 ];
 
-// 40 deterministic icons filling left (2-28%) and right (72-98%) flanks
-const bgIcons = Array.from({ length: 40 }).map((_, i) => {
+// Reduced to 18 icons to ensure buttery smooth performance on mobile & laptops
+const bgIcons = Array.from({ length: 18 }).map((_, i) => {
   const isLeft = i % 2 === 0;
   const x = isLeft ? 2 + (i * 7) % 26 : 72 + (i * 11) % 26;
   const y = (i * 13.7) % 100;
@@ -157,7 +157,7 @@ export default function MissionVisionValues() {
   }, [mouseX, mouseY]);
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] bg-surface-container-low">
+    <section ref={containerRef} className="relative h-[250vh] bg-surface-container-low">
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden py-12">
 
         {/* Ambient 3D Parallax Background */}
@@ -176,7 +176,7 @@ export default function MissionVisionValues() {
         </div>
 
         {/* Stack Container */}
-        <div className="relative w-full max-w-md mx-auto px-6 h-[520px] md:h-[560px]">
+        <div className="relative w-full max-w-md mx-auto px-6 h-[440px] md:h-[560px]">
           {cardsData.map((card, i) => {
             const isLast = i === cardsData.length - 1;
 
@@ -204,8 +204,8 @@ export default function MissionVisionValues() {
                   opacity: isLast ? 1 : opacity,
                 }}
               >
-                <div className="bg-surface rounded-[2rem] overflow-hidden border border-outline-variant/60 shadow-[0_30px_80px_rgba(0,0,0,0.15)] flex flex-col w-full h-[520px] md:h-[560px]">
-
+                <div className="bg-surface rounded-[2rem] overflow-hidden border border-outline-variant/60 shadow-[0_30px_80px_rgba(0,0,0,0.15)] flex flex-col w-full h-[440px] md:h-[560px]">
+                  
                   {/* Icon & Phase Area */}
                   <div className="p-8 pb-4 flex justify-between items-start shrink-0 bg-background">
                     <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
