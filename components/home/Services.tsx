@@ -62,7 +62,7 @@ export default function Services() {
           <span className="font-label-sm text-primary uppercase tracking-[0.2em] block text-xs">Our Services</span>
           <h2 className="font-display-lg text-headline-md text-on-surface">One Partner. Endless Opportunities.</h2>
           <p className="max-w-xl mx-auto text-on-surface-variant text-sm leading-relaxed">
-            Comprehensive education, career, and business support — tailored to your goals.
+            Comprehensive education, career, and business support  tailored to your goals.
           </p>
         </div>
 

@@ -14,16 +14,7 @@ const services = [
   "Marketing & Admission Support",
 ];
 
-function CyclingServices() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % services.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
+function CyclingServices({ activeIndex }: { activeIndex: number }) {
   return (
     <div className="space-y-2">
       {services.map((service, i) => {
@@ -33,27 +24,21 @@ function CyclingServices() {
           <motion.div
             key={service}
             animate={{
-              opacity: isActive ? 1 : isPrev ? 0.35 : 0.2,
+              opacity: isActive ? 1 : isPrev ? 0.9 : 0.75,
               x: isActive ? 0 : 0,
             }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex items-center gap-3"
           >
             {isActive ? (
-              <motion.span
-                layoutId="arrow"
-                className="text-primary text-sm"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
+              <motion.span layoutId="arrow" className="text-primary text-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 ▶
               </motion.span>
             ) : (
               <span className="w-3" />
             )}
             <span
-              className={`text-sm font-medium transition-colors duration-300 ${isActive ? "text-on-primary" : "text-on-primary/30"
-                }`}
+              className={`text-base font-medium transition-colors duration-300 ${isActive ? "text-primary" : "text-white/75"}`}
               style={{ fontFamily: "var(--font-body-lg)" }}
             >
               {service}
@@ -70,14 +55,11 @@ export default function Hero() {
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
 
-  // Background crossfade carousel: 0 = GIF, 1 = Video
-  const [bgIndex, setBgIndex] = useState(0);
-
+  // Shared cycling state for both desktop card + mobile badge
+  const [activeIndex, setActiveIndex] = useState(0);
   useEffect(() => {
-    const bgTimer = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % 2);
-    }, 8000);
-    return () => clearInterval(bgTimer);
+    const t = setInterval(() => setActiveIndex((p) => (p + 1) % services.length), 2000);
+    return () => clearInterval(t);
   }, []);
 
   const springConfig = { damping: 30, stiffness: 100, mass: 1 };
@@ -91,6 +73,10 @@ export default function Hero() {
   // Subtle movement for the light ray background
   const lightRayX = useTransform(smoothX, [0, 1], [-30, 30]);
   const lightRayY = useTransform(smoothY, [0, 1], [-30, 30]);
+
+  // Video parallax — slight zoom shift as cursor moves
+  const videoX = useTransform(smoothX, [0, 1], [-15, 15]);
+  const videoY = useTransform(smoothY, [0, 1], [-10, 10]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     if (!containerRef.current) return;
@@ -112,45 +98,23 @@ export default function Hero() {
       {/* ── Animated Background ── */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
 
-        {/* Always-rendered crossfade layers — avoids black flash */}
-
-        {/* Layer 1: H.mp4 */}
+        {/* Background image with parallax on mouse move */}
         <motion.div
-          animate={{ opacity: bgIndex === 0 ? 1 : 0 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute inset-0"
+          className="absolute inset-[-5%] w-[110%] h-[110%]"
+          style={{ x: videoX, y: videoY }}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-            src="/H.mp4"
-          />
-        </motion.div>
-
-        {/* Layer 2: Video (always mounted so it preloads) */}
-        <motion.div
-          animate={{ opacity: bgIndex === 1 ? 1 : 0 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-            src="/LB.mp4"
+          <img
+            src="/hero-bg.png"
+            alt=""
+            className="w-full h-full object-cover object-center"
           />
         </motion.div>
 
         {/* Text protection overlays — always on, independent of background */}
         {/* Left-side scrim: ensures white text on left is always readable */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
-        {/* Bottom fade for logo strip */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0806]/90 via-transparent to-transparent" />
+        {/* Bottom fade — fades image into black at the bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" style={{ top: '50%' }} />
         {/* Top fade for navbar area */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent" />
 
@@ -253,10 +217,10 @@ export default function Hero() {
 
       {/* ── Main content ── */}
       <motion.div
-        className="relative z-10 flex-1 flex items-center px-6 md:px-16 lg:px-24 py-24 max-w-[1280px] mx-auto w-full"
+        className="relative z-10 flex-1 flex items-center px-6 md:px-16 lg:px-24 py-24 w-full"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-center w-full">
 
           {/* LEFT: Headline + body + CTA */}
           <div className="space-y-8 max-w-[800px]">
@@ -329,39 +293,64 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT: Services card */}
+          {/* RIGHT: Services card — desktop only */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="hidden lg:block w-[280px] shrink-0"
+            className="hidden lg:block w-[270px] shrink-0"
           >
             <div
-              className="rounded-xl p-6 space-y-5"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                backdropFilter: "blur(12px)",
+                background: "rgba(0,0,0,0.7)",
+                backdropFilter: "blur(20px)",
+                borderRadius: "16px",
+                padding: "24px",
+                border: "1px solid rgba(255,255,255,0.15)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
               }}
             >
-              <p
-                className="text-white/50 text-xs tracking-widest uppercase"
-                style={{ fontFamily: "var(--font-label-sm)" }}
-              >
+              <p className="text-white text-xs tracking-widest uppercase font-bold mb-5" style={{ fontFamily: "var(--font-label-sm)" }}>
                 We deliver trusted solutions
               </p>
-              <CyclingServices />
+              <CyclingServices activeIndex={activeIndex} />
             </div>
           </motion.div>
         </div>
       </motion.div>
+
+      {/* ── Mobile: top-right active service badge ── */}
+      <div className="lg:hidden absolute top-20 right-4 z-20">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 6 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            style={{
+              background: "rgba(0,0,0,0.75)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.15)",
+              borderRadius: "999px",
+              padding: "6px 14px",
+            }}
+            className="flex items-center gap-2"
+          >
+            <span className="text-primary text-xs">▶</span>
+            <span className="text-white text-xs font-medium" style={{ fontFamily: "var(--font-body-lg)" }}>
+              {services[activeIndex]}
+            </span>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       {/* ── Bottom logo strip ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-6 md:bottom-10 left-0 right-0 z-20"
+        className="absolute bottom-0 left-0 right-0 z-20 bg-black py-6"
       >
         <div className="max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24 flex flex-col items-center gap-5">
           <span

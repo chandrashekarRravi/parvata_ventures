@@ -37,15 +37,7 @@ export default function Navbar() {
           <Link href="/" className="shrink-0">
 
             {/* Desktop Logo (with scroll blur bg) */}
-            <motion.div
-              animate={
-                isPastThreshold
-                  ? { backgroundColor: "rgba(180,180,180,0.18)", backdropFilter: "blur(12px)", borderRadius: "55px", padding: "8px" }
-                  : { backgroundColor: "rgba(0,0,0,0)", backdropFilter: "blur(0px)", borderRadius: "55px", padding: "0px" }
-              }
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="hidden md:inline-flex items-center gap-3"
-            >
+            <div className="hidden md:inline-flex items-center gap-3 border border-outline-variant/70 rounded-full bg-background/90 backdrop-blur-md px-3 py-1">
               <Image
                 src="/PGV-LOGO-OP-4.png"
                 alt="Parvata Global Ventures Logo"
@@ -64,7 +56,7 @@ export default function Navbar() {
                 style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.7)) drop-shadow(0 0 16px rgba(0,0,0,0.5))" }}
                 priority
               />
-            </motion.div>
+            </div>
 
             {/* Mobile Logo (no background, no padding) */}
             <div className="flex md:hidden items-center gap-2">

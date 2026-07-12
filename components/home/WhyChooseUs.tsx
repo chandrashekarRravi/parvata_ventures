@@ -43,7 +43,7 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-on-surface-variant font-body-lg text-body-lg"
             >
-              At GlobalPath, we believe recruitment should feel like an editorial experience—sophisticated, intentional, and personally curated.
+              At Parvatha Global Ventures, we believe in connecting opportunities to aspirations. We are a premier consultancy dedicated to shaping global careers and fostering international educational journeys.
             </motion.p>
 
             <div className="space-y-6">

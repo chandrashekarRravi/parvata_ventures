@@ -4,6 +4,7 @@ import FadeInUpObserver from "@/components/utils/FadeInUpObserver";
 import AboutHero from "@/components/about/AboutHero";
 import OurStory from "@/components/about/OurStory";
 import MissionVisionValues from "@/components/about/MissionVisionValues";
+import Objectives from "@/components/about/Objectives";
 import CareerSuccessTeam from "@/components/about/CareerSuccessTeam";
 import EvolutionTimeline from "@/components/about/EvolutionTimeline";
 import AccreditationBadges from "@/components/about/AccreditationBadges";
@@ -23,6 +24,7 @@ export default function AboutPage() {
         <AboutHero />
         <OurStory />
         <MissionVisionValues />
+        <Objectives />
         <CareerSuccessTeam />
         <AccreditationBadges />
       </main>
