@@ -188,7 +188,7 @@ export default function ServicesSplit() {
                   <span className="font-label-sm text-primary uppercase tracking-[0.15em] text-xs block mb-1">
                     Service {String(index + 1).padStart(2, "0")}
                   </span>
-                  <h2 className="font-headline-md text-headline-md">{service.title}</h2>
+                  <h2 className="font-headline-md text-headline-md" style={{ color: "var(--color-secondary)" }}>{service.title}</h2>
                 </div>
               </div>
               <p className="text-on-surface-variant font-body-lg leading-relaxed">{service.description}</p>

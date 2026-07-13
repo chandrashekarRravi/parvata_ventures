@@ -1,113 +1,59 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useMotionValue, useSpring, MotionValue } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import type React from "react";
 
-const ICONS = [
-  "school", "medical_services", "flight", "location_on", "event",
-  "travel_explore", "campaign", "public", "work", "groups", "auto_stories", "apartment"
-];
-
-// Reduced to 18 icons to ensure buttery smooth performance on mobile & laptops
-const bgIcons = Array.from({ length: 18 }).map((_, i) => {
-  const isLeft = i % 2 === 0;
-  const x = isLeft ? 2 + (i * 7) % 26 : 72 + (i * 11) % 26;
-  const y = (i * 13.7) % 100;
-  const size = 30 + (i * 17) % 80; // 30px to 110px
-  const depth = size / 110; // 0.27 to 1.0 (bigger = closer)
-  const icon = ICONS[i % ICONS.length];
-  const delay = (i * 0.3) % 4;
-  const duration = 4 + (i % 4);
-  const opacity = 0.04 + (i % 5) * 0.02; // 0.04 to 0.12
-
-  return { id: i, x, y, size, depth, icon, delay, duration, opacity };
-});
-
-function AmbientIcon({
-  data,
-  smoothX,
-  smoothY
-}: {
-  data: typeof bgIcons[0];
-  smoothX: MotionValue<number>;
-  smoothY: MotionValue<number>;
-}) {
-  // Parallax: closer (bigger depth) move more. Negative so it moves opposite to mouse.
-  const parallaxX = useTransform(smoothX, [-1, 1], [-120 * data.depth, 120 * data.depth]);
-  const parallaxY = useTransform(smoothY, [-1, 1], [-120 * data.depth, 120 * data.depth]);
-
-  return (
-    <motion.div
-      className="absolute flex items-center justify-center pointer-events-none z-0"
-      style={{
-        left: `${data.x}%`,
-        top: `${data.y}%`,
-        x: parallaxX,
-        y: parallaxY,
-        opacity: data.opacity,
-      }}
-    >
-      <motion.span
-        className="material-symbols-outlined text-primary"
-        style={{ fontSize: data.size, fontVariationSettings: "'FILL' 1" }}
-        animate={{ y: ["-20px", "20px", "-20px"] }}
-        transition={{
-          repeat: Infinity,
-          duration: data.duration,
-          delay: data.delay,
-          ease: "easeInOut",
-        }}
-      >
-        {data.icon}
-      </motion.span>
-    </motion.div>
-  );
-}
-
-const cardsData = [
+const tabs = [
   {
-    title: "Our Mission",
+    id: "mission",
+    label: "Mission",
     icon: "target",
+    tagline: "Our Purpose",
     content: (
-      <p className="text-on-surface-variant font-body-lg text-base leading-relaxed">
-        To provide reliable, innovative, and result-oriented services in education consultancy, international admissions, job placements, tourism, event management, and institutional support while creating meaningful opportunities for growth and success.
+      <p className="text-on-surface-variant text-sm md:text-base leading-relaxed">
+        To provide reliable, innovative, and result-oriented services in education consultancy,
+        international admissions, job placements, tourism, event management, and institutional
+        support — while creating meaningful opportunities for growth and success.
       </p>
     ),
   },
   {
-    title: "Our Vision",
+    id: "vision",
+    label: "Vision",
     icon: "visibility",
+    tagline: "Where We're Headed",
     content: (
-      <p className="text-on-surface-variant font-body-lg text-base leading-relaxed">
-        To become a trusted and globally recognized organization that empowers individuals, educational institutions, and businesses through quality education solutions, career opportunities, and professional services.
+      <p className="text-on-surface-variant text-sm md:text-base leading-relaxed">
+        To become a trusted and globally recognized organization that empowers individuals,
+        educational institutions, and businesses through quality education solutions, career
+        opportunities, and professional services.
       </p>
     ),
   },
   {
-    title: "Our Values",
+    id: "values",
+    label: "Values",
     icon: "diversity_3",
+    tagline: "What We Stand For",
     content: (
-      <ul className="space-y-3 text-on-surface-variant font-body-lg text-base">
-        <li className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 bg-primary rounded-full"></span> Integrity
-        </li>
-        <li className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 bg-primary rounded-full"></span> Excellence & Innovation
-        </li>
-        <li className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 bg-primary rounded-full"></span> Trust & Respect
-        </li>
-        <li className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 bg-primary rounded-full"></span> Social Responsibility
-        </li>
+      <ul className="space-y-3">
+        {["Integrity", "Excellence & Innovation", "Trust & Respect", "Social Responsibility"].map((v) => (
+          <li key={v} className="flex items-center gap-3 text-on-surface-variant text-sm md:text-base">
+            <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
+            {v}
+          </li>
+        ))}
       </ul>
     ),
   },
   {
-    title: "Our Objectives",
+    id: "objectives",
+    label: "Objectives",
     icon: "flag",
+    tagline: "Our Goals",
     content: (
-      <ul className="space-y-2.5 text-on-surface-variant font-body-lg text-[13px] md:text-sm">
+      <ul className="space-y-2.5">
         {[
           "To provide expert guidance and support in education and career development.",
           "To help students access quality international education opportunities.",
@@ -117,9 +63,9 @@ const cardsData = [
           "To build long-term partnerships globally.",
           "To create sustainable opportunities for learning, employment, and growth.",
         ].map((obj, i) => (
-          <li key={i} className="flex gap-3 items-start leading-tight">
+          <li key={i} className="flex gap-2.5 items-start text-on-surface-variant text-xs md:text-sm leading-snug">
             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-            <p>{obj}</p>
+            {obj}
           </li>
         ))}
       </ul>
@@ -127,121 +73,293 @@ const cardsData = [
   },
 ];
 
+const SCROLL_PER_TAB = 380;
+const TOTAL_SCROLL = SCROLL_PER_TAB * (tabs.length + 0.8);
+const RADIUS = 18;
+const CIRC = 2 * Math.PI * RADIUS;
+
+function getTransform(pos: number) {
+  const abs = Math.abs(pos);
+  return {
+    x: pos * 280,
+    y: abs * 60 + abs * abs * 10,
+    rotate: pos * 13,
+    scale: abs === 0 ? 1 : Math.max(0.58, 1 - abs * 0.19),
+    opacity: abs === 0 ? 1 : Math.max(0.15, 1 - abs * 0.38),
+    zIndex: 20 - Math.round(abs * 4),
+    blur: abs > 1,
+  };
+}
+
+/* ── Pill indicator shared between mobile + desktop ── */
+function PillIndicator({
+  activeIndex,
+  progress,
+  sectionRef,
+}: {
+  activeIndex: number;
+  progress: number;
+  sectionRef: React.RefObject<HTMLDivElement>;
+}) {
+  return (
+    <div className="flex items-center gap-2 bg-surface rounded-full px-4 py-2.5 border border-outline-variant shadow-sm">
+      {tabs.map((tab, i) => {
+        const isActive = i === activeIndex;
+        const isDone = i < activeIndex;
+        const ringProg = isActive ? progress : isDone ? 1 : 0;
+        return (
+          <button
+            key={tab.id}
+            onClick={() => {
+              if (!sectionRef.current) return;
+              const top =
+                sectionRef.current.getBoundingClientRect().top +
+                window.scrollY +
+                i * SCROLL_PER_TAB +
+                1;
+              window.scrollTo({ top, behavior: "smooth" });
+            }}
+            className="relative flex items-center justify-center"
+            style={{ width: 40, height: 40 }}
+            title={tab.label}
+          >
+            <svg className="absolute inset-0 -rotate-90" width={40} height={40} viewBox="0 0 40 40">
+              <circle cx={20} cy={20} r={RADIUS} fill="none" stroke="var(--color-outline-variant)" strokeWidth={2} />
+              <motion.circle
+                cx={20} cy={20} r={RADIUS}
+                fill="none"
+                stroke="var(--color-primary)"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeDasharray={CIRC}
+                animate={{ strokeDashoffset: CIRC * (1 - ringProg) }}
+                transition={{ duration: 0 }}
+              />
+            </svg>
+            <motion.div
+              className="rounded-full"
+              animate={{
+                width: isActive ? 14 : 8,
+                height: isActive ? 14 : 8,
+                backgroundColor: isActive || isDone ? "var(--color-primary)" : "var(--color-outline)",
+                opacity: isActive || isDone ? 1 : 0.35,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function MissionVisionValues() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Scroll logic for the cards
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Mouse parallax logic for the background
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const smoothX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const smoothY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Normalize mouse coordinates from -1 to 1 based on screen center
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      mouseX.set(x);
-      mouseY.set(y);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const scrolled = Math.max(0, Math.min(-rect.top, TOTAL_SCROLL));
+      const rawIndex = scrolled / SCROLL_PER_TAB;
+      const tabIndex = Math.min(Math.floor(rawIndex), tabs.length - 1);
+      const tabProgress =
+        tabIndex === tabs.length - 1
+          ? Math.min((scrolled - tabIndex * SCROLL_PER_TAB) / SCROLL_PER_TAB, 1)
+          : (scrolled % SCROLL_PER_TAB) / SCROLL_PER_TAB;
+      setActiveIndex(tabIndex);
+      setProgress(tabProgress);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <section ref={containerRef} className="relative h-[250vh] bg-surface-container-low">
-      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden py-12">
+    <div ref={sectionRef} style={{ height: `calc(100vh + ${TOTAL_SCROLL}px)` }} className="relative">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden bg-surface-container-low px-4 md:px-0">
 
-        {/* Ambient 3D Parallax Background */}
-        {bgIcons.map((icon) => (
-          <AmbientIcon key={icon.id} data={icon} smoothX={smoothX} smoothY={smoothY} />
-        ))}
-
-        {/* Header (Pinned with the cards) */}
-        <div className="text-center px-6 mb-10 shrink-0 z-10">
-          <span className="font-label-sm text-primary uppercase tracking-[0.2em] text-xs block mb-3">
+        {/* Header */}
+        <div className="text-center mb-6 z-10 shrink-0">
+          <span className="font-label-sm text-primary uppercase tracking-[0.2em] text-xs block mb-2">
             Our Foundations
           </span>
-          <h2 className="font-display-lg text-headline-md text-on-surface">
+          <h2 className="font-display-lg text-3xl md:text-5xl text-on-surface">
             Driving the Future
           </h2>
         </div>
 
-        {/* Stack Container */}
-        <div className="relative w-full max-w-md mx-auto px-6 h-[440px] md:h-[560px]">
-          {cardsData.map((card, i) => {
-            const isLast = i === cardsData.length - 1;
-
-            const start = i * (1 / 3);
-            const end = (i + 1) * (1 / 3);
-
-            const localProgress = useTransform(scrollYProgress, [start, end], [0, 1]);
-
-            const lift = useTransform(localProgress, (p) => Math.sin(p * Math.PI) * -18);
-            const scale = useTransform(localProgress, (p) => 1 + Math.sin(p * Math.PI) * 0.02);
-            const dropY = useTransform(localProgress, (p) => (p > 0.5 ? (p - 0.5) * 2 * 120 : 0));
-            const opacity = useTransform(localProgress, (p) => (p > 0.5 ? 1 - (p - 0.5) * 2 : 1));
-
-            const y = useTransform(() => lift.get() + dropY.get());
-
-            return (
+        {/* ══ MOBILE: single full-width card ══ */}
+        {isMobile ? (
+          <div className="w-full max-w-sm mx-auto z-10 shrink-0">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={i}
-                className="absolute left-0 right-0 mx-auto w-full origin-bottom"
-                style={{
-                  top: 0,
-                  zIndex: cardsData.length - i,
-                  y: isLast ? 0 : y,
-                  scale: isLast ? 1 : scale,
-                  opacity: isLast ? 1 : opacity,
-                }}
+                key={activeIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-surface border-2 border-primary/40 rounded-3xl shadow-xl overflow-hidden"
               >
-                <div className="bg-surface rounded-[2rem] overflow-hidden border border-outline-variant/60 shadow-[0_30px_80px_rgba(0,0,0,0.15)] flex flex-col w-full h-[440px] md:h-[560px]">
-                  
-                  {/* Icon & Phase Area */}
-                  <div className="p-8 pb-4 flex justify-between items-start shrink-0 bg-background">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
-                      <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                        {card.icon}
-                      </span>
-                    </div>
-
+                {/* Card header */}
+                <div className="px-5 pt-5 pb-4 border-b border-outline-variant/50 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <span className="material-symbols-outlined text-xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>
+                      {tabs[activeIndex].icon}
+                    </span>
                   </div>
-
-                  {/* Content Area */}
-                  <div className="px-8 flex flex-col flex-grow bg-background">
-                    <h3 className="font-display-lg text-3xl text-on-surface mb-4">
-                      {card.title}
-                    </h3>
-                    <div className="text-on-surface-variant font-body-lg text-base md:text-lg leading-relaxed flex-grow overflow-y-auto pr-2 custom-scrollbar">
-                      {card.content}
-                    </div>
-
-                    {/* Footer */}
-                    <div className="mt-4 pb-6 pt-5 border-t border-outline-variant flex items-center justify-between shrink-0">
-                      <span className="text-[12px] font-semibold tracking-[0.2em] text-on-surface-variant/70 uppercase">
-                        Step {i + 1}
-                      </span>
-                      <span className="material-symbols-outlined text-on-surface text-xl">
-                        arrow_forward
-                      </span>
-                    </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-semibold">
+                      {tabs[activeIndex].tagline}
+                    </p>
+                    <p className="font-bold text-base text-primary">Our {tabs[activeIndex].label}</p>
                   </div>
-
+                </div>
+                {/* Content */}
+                <div className="px-5 py-4">
+                  {tabs[activeIndex].content}
+                </div>
+                {/* Progress */}
+                <div className="px-5 pb-4">
+                  <div className="h-1 bg-outline-variant rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-primary origin-left rounded-full"
+                      style={{ scaleX: progress }}
+                    />
+                  </div>
                 </div>
               </motion.div>
-            );
-          })}
+            </AnimatePresence>
+          </div>
+        ) : (
+          /* ══ DESKTOP: 3D Arc Fan ══ */
+          <div
+            className="relative flex items-end justify-center w-full shrink-0 z-10"
+            style={{ height: 560, perspective: "1400px" }}
+          >
+            {tabs.map((tab, i) => {
+              const pos = i - activeIndex;
+              const t = getTransform(pos);
+              const isActive = pos === 0;
+
+              return (
+                <motion.div
+                  key={tab.id}
+                  animate={{ x: t.x, y: t.y, rotate: t.rotate, scale: t.scale, opacity: t.opacity }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    zIndex: t.zIndex,
+                    position: "absolute",
+                    bottom: 0,
+                    transformOrigin: "bottom center",
+                    cursor: !isActive ? "pointer" : "default",
+                    filter: t.blur ? "blur(1px)" : "none",
+                  }}
+                  onClick={() => {
+                    if (isActive || !sectionRef.current) return;
+                    const top =
+                      sectionRef.current.getBoundingClientRect().top +
+                      window.scrollY + i * SCROLL_PER_TAB + 1;
+                    window.scrollTo({ top, behavior: "smooth" });
+                  }}
+                >
+                  <div
+                    className="bg-surface border-2 rounded-[28px] flex flex-col overflow-hidden"
+                    style={{
+                      width: isActive ? 420 : 260,
+                      /* No fixed height — let content determine height, capped by max */
+                      minHeight: isActive ? 480 : 340,
+                      maxHeight: isActive ? 540 : 380,
+                      transition:
+                        "width 0.45s cubic-bezier(0.16,1,0.3,1), min-height 0.45s cubic-bezier(0.16,1,0.3,1)",
+                      borderColor: isActive ? "var(--color-primary)" : "var(--color-outline-variant)",
+                      boxShadow: isActive
+                        ? "0 24px 64px rgba(0,0,0,0.12), 0 0 0 1px var(--color-primary)"
+                        : "0 8px 24px rgba(0,0,0,0.07)",
+                    }}
+                  >
+                    {/* Card header */}
+                    <div className="px-7 pt-7 pb-5 shrink-0 border-b border-outline-variant/50">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                          <span
+                            className="material-symbols-outlined text-2xl text-primary"
+                            style={{ fontVariationSettings: "'FILL' 1" }}
+                          >
+                            {tab.icon}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-semibold">
+                            {tab.tagline}
+                          </p>
+                          <p className="font-bold text-xl text-primary">Our {tab.label}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Content — no scroll, stretches card */}
+                    <div
+                      className="px-7 py-6 flex-1"
+                      style={{ opacity: isActive ? 1 : 0.45 }}
+                    >
+                      {tab.content}
+                    </div>
+
+                    {/* Progress bar on active */}
+                    {isActive && (
+                      <div className="px-7 pb-6 shrink-0">
+                        <div className="h-1 bg-outline-variant rounded-full overflow-hidden">
+                          <motion.div
+                            className="h-full bg-primary origin-left rounded-full"
+                            style={{ scaleX: progress }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* ── Indicator row ── */}
+        <div className="flex items-center gap-4 mt-6 z-10 shrink-0">
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={activeIndex}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="text-on-surface font-semibold text-base md:text-xl min-w-[110px] text-right"
+            >
+              Our {tabs[activeIndex].label}
+            </motion.span>
+          </AnimatePresence>
+
+          <PillIndicator activeIndex={activeIndex} progress={progress} sectionRef={sectionRef} />
+
+          <span className="text-on-surface-variant font-semibold text-base md:text-xl min-w-[50px]">
+            {activeIndex + 1}
+            <span className="text-on-surface-variant/40 text-sm"> / {tabs.length}</span>
+          </span>
         </div>
+
+        <p className="mt-3 text-[10px] uppercase tracking-[0.25em] text-on-surface-variant/30 z-10 shrink-0">
+          Scroll to explore ↓
+        </p>
       </div>
-    </section>
+    </div>
   );
 }

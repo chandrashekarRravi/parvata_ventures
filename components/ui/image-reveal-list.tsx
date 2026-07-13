@@ -22,6 +22,7 @@ export interface ImageRevealListProps {
 export function ImageRevealList({ items, className }: ImageRevealListProps) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<{ item: ImageRevealListItem; isLeft: boolean } | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -36,25 +37,19 @@ export function ImageRevealList({ items, className }: ImageRevealListProps) {
   const handleClick = (e: React.MouseEvent, item: ImageRevealListItem) => {
     if (isTouchDevice) {
       if (expandedId === item.id) {
-        // Second tap -> navigate
         if (item.href) router.push(item.href);
       } else {
-        // First tap -> expand
         e.preventDefault();
         setExpandedId(item.id);
       }
     } else {
-      // Desktop -> navigate immediately
       if (item.href) router.push(item.href);
     }
   };
 
   const listVariants = {
     hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const itemVariants = {
@@ -64,39 +59,59 @@ export function ImageRevealList({ items, className }: ImageRevealListProps) {
 
   return (
     <div className={cn("relative w-full mx-auto max-w-5xl", className)}>
+
+      {/* Single shared floating image rendered at the container level.
+          Left-col cards → image floats to the LEFT of the grid.
+          Right-col cards → image floats to the RIGHT of the grid.
+          This avoids any overlap with adjacent cards. */}
+      {!isTouchDevice && (
+        <AnimatePresence>
+          {hoveredItem && (
+            <motion.img
+              key={hoveredItem.item.id}
+              src={hoveredItem.item.image}
+              alt={hoveredItem.item.title}
+              initial={{ opacity: 0, scale: 0.88 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.88 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className={cn(
+                "absolute top-1/2 -translate-y-1/2 w-[150px] h-[190px] rounded-2xl object-cover shadow-2xl pointer-events-none z-50 hidden md:block",
+                hoveredItem.isLeft
+                  ? "-left-[180px]"  // left column → image appears LEFT of grid
+                  : "-right-[180px]" // right column → image appears RIGHT of grid
+              )}
+            />
+          )}
+        </AnimatePresence>
+      )}
+
       <motion.ul
         variants={listVariants}
         initial="hidden"
         animate="show"
         className="list-none grid grid-cols-1 md:grid-cols-2 gap-4"
       >
-        {items.map((item) => {
+        {items.map((item, index) => {
           const isExpanded = expandedId === item.id;
+          const isLeftCol = index % 2 === 0;
 
           return (
             <motion.li key={item.id} variants={itemVariants} className="relative z-10">
               <a
                 href={item.href || "#"}
                 onClick={(e) => handleClick(e, item)}
+                onMouseEnter={() => !isTouchDevice && setHoveredItem({ item, isLeft: isLeftCol })}
+                onMouseLeave={() => setHoveredItem(null)}
                 className={cn(
                   "group relative flex flex-col w-full text-on-surface no-underline rounded-2xl transition-all duration-300",
                   "bg-surface-container-low border border-outline-variant hover:border-primary",
-                  "active:scale-[0.98]", // Haptic feel
+                  "active:scale-[0.98]",
                   isExpanded ? "border-primary shadow-lg shadow-primary/10" : ""
                 )}
               >
-                {/* Desktop hover image (hidden on touch) */}
-                {!isTouchDevice && (
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="absolute -left-[180px] top-1/2 -translate-y-1/2 scale-90 w-[140px] h-[180px] rounded-xl object-cover shadow-2xl opacity-0 pointer-events-none transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] z-[100] group-hover:opacity-100 group-hover:scale-100 group-hover:-left-[160px] hidden md:block"
-                  />
-                )}
-
                 {/* Main Row */}
                 <div className="flex items-center justify-between p-5 md:p-6 w-full relative z-10 overflow-hidden">
-                  {/* Hover background slide (desktop only) */}
                   <div className="absolute inset-0 bg-primary/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out -z-10 hidden md:block" />
 
                   <div className="flex items-center gap-6">
@@ -115,7 +130,6 @@ export function ImageRevealList({ items, className }: ImageRevealListProps) {
                     </div>
                   </div>
 
-                  {/* Icon */}
                   <div className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container group-hover:bg-primary/10 transition-colors duration-300 shrink-0">
                     <span
                       className={cn(
