@@ -8,18 +8,11 @@ export default function Footer() {
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <Image
-              src="/PGV-LOGO-OP-4.png"
+              src="/PGV-LOGO-HOZT-FINAL.png"
               alt="Parvata Global Ventures Logo"
-              width={100}
+              width={340}
               height={100}
               className="h-14 w-auto object-contain"
-            />
-            <Image
-              src="/PGV-WORDLOGO-OP-3.png"
-              alt="Parvata Global Ventures Text"
-              width={240}
-              height={80}
-              className="h-9 w-auto object-contain"
             />
           </div>
           <p className="text-on-surface-variant max-w-xs font-body-md text-body-md">
@@ -77,12 +70,12 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-outline-variant/30 py-8 px-gutter">
-        <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-label-sm font-label-sm">
-          <span>© {new Date().getFullYear()} Parvatha Global Ventures. All rights reserved.</span>
-          <div className="flex gap-8">
+      <div className="border-t border-outline-variant/30 py-6 px-gutter">
+        <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-[8px] md:text-[10px] text-center md:text-left">
+          <span>© {new Date().getFullYear()} Parvata Global Ventures. All rights reserved.</span>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
             <span>Davangere</span>
-
+            <span className="font-medium">developed & maintained by <Link className="text-primary font-medium transition-colors duration-200 hover:text-secondary" target="_blank" rel="noopener noreferrer" href="https://weandyoumarketing.com">WeAndYouMarketing</Link></span>
           </div>
         </div>
       </div>

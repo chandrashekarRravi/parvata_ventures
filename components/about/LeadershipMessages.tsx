@@ -91,12 +91,12 @@ export default function LeadershipMessages() {
               <div 
                 key={leader.id}
                 className={cn(
-                  "flex flex-col lg:flex-row gap-12 lg:gap-24 items-start",
+                  "flex flex-col lg:flex-row gap-12 lg:gap-24 items-center",
                   !isEven && "lg:flex-row-reverse"
                 )}
               >
                 {/* Image Section */}
-                <div className="w-full lg:w-5/12 shrink-0 lg:sticky lg:top-32">
+                <div className="w-full lg:w-5/12 shrink-0">
                   <div className="relative rounded-[2rem] overflow-hidden aspect-[3/4] shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-outline-variant/50 group">
                     <img 
                       src={leader.image} 

@@ -39,21 +39,11 @@ export default function Navbar() {
             {/* Desktop Logo (with scroll blur bg) */}
             <div className="hidden md:inline-flex items-center gap-3 border border-outline-variant/70 rounded-full bg-background/90 backdrop-blur-md px-3 py-1">
               <Image
-                src="/PGV-LOGO-OP-4.png"
+                src="/PGV-LOGO-HOZT-FINAL.png"
                 alt="Parvata Global Ventures Logo"
-                width={100}
+                width={340}
                 height={100}
                 className="h-16 w-auto object-contain"
-                style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.7)) drop-shadow(0 0 16px rgba(0,0,0,0.5))" }}
-                priority
-              />
-              <Image
-                src="/PGV-WORDLOGO-OP-3.png"
-                alt="Parvata Global Ventures Text"
-                width={240}
-                height={80}
-                className="h-10 w-auto object-contain"
-                style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.7)) drop-shadow(0 0 16px rgba(0,0,0,0.5))" }}
                 priority
               />
             </div>
@@ -61,21 +51,11 @@ export default function Navbar() {
             {/* Mobile Logo (no background, no padding) */}
             <div className="flex md:hidden items-center gap-2">
               <Image
-                src="/PGV-LOGO-OP-4.png"
+                src="/PGV-LOGO-HOZT-FINAL.png"
                 alt="Parvata Global Ventures Logo"
-                width={100}
+                width={340}
                 height={100}
                 className="h-8 w-auto object-contain"
-                style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.8))" }}
-                priority
-              />
-              <Image
-                src="/PGV-WORDLOGO-OP-3.png"
-                alt="Parvata Global Ventures Text"
-                width={240}
-                height={80}
-                className="h-5 w-auto object-contain"
-                style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.8))" }}
                 priority
               />
             </div>
@@ -188,18 +168,11 @@ export default function Navbar() {
               <div className="flex justify-between items-center px-6 py-5 border-b border-outline-variant/30">
                 <div className="flex items-center gap-2">
                   <Image
-                    src="/PGV-LOGO-OP-4.png"
+                    src="/PGV-LOGO-HOZT-FINAL.png"
                     alt="Parvata Global Ventures Logo"
-                    width={80}
+                    width={240}
                     height={80}
                     className="h-10 w-auto object-contain"
-                  />
-                  <Image
-                    src="/PGV-WORDLOGO-OP-3.png"
-                    alt="Parvata Global Ventures Text"
-                    width={160}
-                    height={50}
-                    className="h-6 w-auto object-contain"
                   />
                 </div>
                 <button

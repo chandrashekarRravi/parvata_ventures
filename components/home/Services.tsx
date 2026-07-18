@@ -10,7 +10,7 @@ const servicesData = [
     number: "01",
     title: "Education Consultancy",
     subtitle: "Expert academic planning",
-    image: "/hero-bg.png",
+    image: "/servies/EC.png",
     href: "/services#education-consultancy",
   },
   {
