@@ -5,25 +5,75 @@ import { motion } from "framer-motion";
 
 const teamMembers = [
   {
-    name: "Eleanor Vance",
-    role: "Managing Director",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOeaWYkJb1OUHnhr7NCfbZkDxmJH_sMmzYv0TEoqReHHCXMPQZ-jb2o2B0Sr5cbb3GLibiCzP5FFr8n2b_NFqB8Qzf9NBBANW5qmMzPQazAZ72bvsosAR2ou7VeOaDrMAmrPQErdgMQMVbPXOxJt5i_ZwD1vLbutB_NeVac687VjVtWfwXLBet10j8gFFU-U0EFudUw7cRUXder5ULikloeWlbWtINyvklQuZBT0GMGMyMGtA_agVch91JZaTJqghqRM1dymhu4Yin"
+    name: "Chief Executive Officer",
+    role: "CEO",
+    image: "/Parvatha Team/CEO(CheifExecutiveOfficer).jpeg"
   },
   {
-    name: "Julian Thorne",
-    role: "Head of Strategy",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD18SXdQsMmGxfXSVjrFgXLuE1tH6Kb7x897yJUtaisVkcA4-EP1_ZIt2gIl1cX_fR7wftgkA0bm9GIAwkMiV4NFQvTNboalNIVkH4eqXq-cjgfqIkYtmuI4cufBG3Nl8N6zzeMLD_Rq8AQeYDG09R_0KTL2Qglwg7oxovkqQzxJYnIExM_G602Ob55zbs508u-bLJhQZlqefhvEvbhoT7EDFvJIntbsT31lkk5-rMnxwJSD5VRccn4YRZHRwIS7Gy6rLjYUYk1B6ni"
+    name: "Director",
+    role: "Director",
+    image: "/Parvatha Team/Director.jpeg"
   },
   {
-    name: "Sophia Chen",
-    role: "Senior Consultant",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuADmr4_ua6eTWOtZ-OAajbPI-M4G9REV2lPnUu5z67JBaAOeFBKAaBZzY47ZopcRsWO8jFzo3uaSDYObEwPvbNeBCSfC0mhH5ULhGGOtsvHNAev6OVJxKHx1CGbnquGLYkNU8qlT_lOraI6CUvJOhYOrsg4JPYwGzKPo40o1aNUrgyxJ6l9DUN-8oIMZ8dHMZNLNTHDEeDZxb11VCfob8QsZCIBpWgaw6_gfpOLWx7yGM92X8LmRlpBb7d3oTzV417wK2p_CN8C6yNC"
+    name: "Counselor",
+    role: "Counselor",
+    image: "/Parvatha Team/Counselor.jpeg"
   },
   {
-    name: "Marcus Reed",
-    role: "Client Relations",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBEDLfoL2INxa2zA41R-T3ey_ZTGlw7c6Bq_4-0ZVzgkNZLdekILAa42-4kGdy2UkxPnfBuJc2sv-msXqacg4zEPHu14Oj8SYr7tfpU6gkX_ovrCJEKWTGoJkijDCE3cvjsADF3bmC2MZHPukRKUf8nntwCzz3lSjzgepfUyvf4jUH6tKVOUPmpziFu38gVSqNIDUFw-wpFFx5V14u2JRIZksBe-TXQ_0vF7GWkBM0suqbFpo1we7EexqHUhH5GP159Kw3GeehU_SGQ"
-  }
+    name: "Operations Manager",
+    role: "Operation Manager",
+    image: "/Parvatha Team/Operation-Manager.jpeg"
+  },
+  {
+    name: "International Education & Placement Manager",
+    role: "International Education & Placement Manager",
+    image: "/Parvatha Team/InternationalEducationandPlacementManager.jpeg"
+  },
+  {
+    name: "Digital Marketing & Branding Manager",
+    role: "Digital Marketing & Branding Manager",
+    image: "/Parvatha Team/DigitalMarketingandBrandingManager.jpeg"
+  },
+  {
+    name: "IT & Technical Manager",
+    role: "IT & Technical Manager",
+    image: "/Parvatha Team/ITandTechnicalManager.jpeg"
+  },
+  {
+    name: "Assistant Counselor",
+    role: "Assistant Counselor",
+    image: "/Parvatha Team/Assisstant-Counselor.jpeg"
+  },
+  {
+    name: "Assistant Counselor",
+    role: "Assistant Counselor",
+    image: "/Parvatha Team/Assisstant-Counsellor1.jpeg"
+  },
+  {
+    name: "Assistant Counselor",
+    role: "Assistant Counselor",
+    image: "/Parvatha Team/Assisstant-Counselor2.jpeg"
+  },
+  {
+    name: "Assistant Counselor",
+    role: "Assistant Counselor",
+    image: "/Parvatha Team/Assisstant-Counselor3.jpeg"
+  },
+  {
+    name: "Assistant Counselor",
+    role: "Assistant Counselor",
+    image: "/Parvatha Team/Assisstant-Counselor4.jpeg"
+  },
+  {
+    name: "Assistant Counselor",
+    role: "Assistant Counselor",
+    image: "/Parvatha Team/Assisstant-Counselor5.jpeg"
+  },
+  {
+    name: "Assistant Counselor",
+    role: "Assistant Counselor",
+    image: "/Parvatha Team/Assisstant-Counselor6.jpeg"
+  },
 ];
 
 // Duplicate for smooth infinite scrolling
@@ -33,7 +83,7 @@ export default function CareerSuccessTeam() {
   return (
     <section className="py-section-padding-lg overflow-hidden relative">
       <div className="px-gutter max-w-container-max mx-auto">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -60,7 +110,7 @@ export default function CareerSuccessTeam() {
           transition={{
             repeat: Infinity,
             ease: "linear",
-            duration: 25,
+            duration: 50,
           }}
         >
           {marqueeTeam.map((member, index) => (
