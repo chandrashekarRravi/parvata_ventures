@@ -18,7 +18,7 @@ export default function Footer() {
           <p className="text-on-surface-variant max-w-xs font-body-md text-body-md">
             Redefining professional pathways with intentional design and global reach.
           </p>
-          <div className="flex gap-4 pt-4">
+          {/* <div className="flex gap-4 pt-4">
             <Link href="#" className="text-primary hover:opacity-70 transition-opacity">
               <span className="material-symbols-outlined">face_nod</span>
             </Link>
@@ -28,7 +28,7 @@ export default function Footer() {
             <Link href="#" className="text-primary hover:opacity-70 transition-opacity">
               <span className="material-symbols-outlined">alternate_email</span>
             </Link>
-          </div>
+          </div> */}
         </div>
 
         <div className="grid grid-cols-2 gap-8">

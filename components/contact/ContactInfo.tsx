@@ -29,33 +29,34 @@ export default function ContactInfo() {
       <div className="space-y-8">
         <h3 className="font-headline-md text-headline-md">Reach Out Directly</h3>
         <div className="space-y-6">
-          <div className="flex items-center gap-4 group cursor-pointer">
+          <a href="mailto:info@parvathaglobalventures.com" className="flex items-center gap-4 group cursor-pointer">
             <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">
               <span className="material-symbols-outlined">mail</span>
             </div>
             <div>
               <p className="text-primary font-label-sm uppercase text-[10px]">Email Us</p>
-              <p className="font-body-lg">hello@globalpath.consulting</p>
+              <p className="font-body-lg">info@parvathaglobalventures.com</p>
             </div>
-          </div>
-          <div className="flex items-center gap-4 group cursor-pointer">
+          </a>
+          <a href="tel:+917353565161" className="flex items-center gap-4 group cursor-pointer">
             <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">
               <span className="material-symbols-outlined">call</span>
             </div>
             <div>
               <p className="text-primary font-label-sm uppercase text-[10px]">Call Us</p>
-              <p className="font-body-lg">+44 (0) 20 7946 0123</p>
+              <p className="font-body-lg">+91 73535 65161</p>
+              <p className="font-body-lg">+91 73539 69755</p>
             </div>
-          </div>
-          <div className="flex items-center gap-4 group cursor-pointer">
+          </a>
+          <a href="https://wa.me/917353565161" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group cursor-pointer">
             <div className="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300">
               <span className="material-symbols-outlined">chat</span>
             </div>
             <div>
               <p className="text-primary font-label-sm uppercase text-[10px]">WhatsApp</p>
-              <p className="font-body-lg">Chat with a Consultant</p>
+              <p className="font-body-lg">+91 73535 65161</p>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <div className="pt-8">
