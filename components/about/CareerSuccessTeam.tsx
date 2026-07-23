@@ -5,72 +5,72 @@ import { motion } from "framer-motion";
 
 const teamMembers = [
   {
-    name: "Chief Executive Officer",
+    name: "Dr. Preethy",
     role: "CEO",
     image: "/Parvatha Team/CEO(CheifExecutiveOfficer).jpeg"
   },
   {
-    name: "Director",
+    name: "Harsha G S",
     role: "Director",
     image: "/Parvatha Team/Director.jpeg"
   },
   {
-    name: "Counselor",
+    name: "Sanjana S Shet",
+    role: "Operations Manager",
+    image: "/Parvatha Team/Operation-Manager.jpeg"
+  },
+  {
+    name: "Tejashwini H P",
+    role: "International Education",
+    image: "/Parvatha Team/InternationalEducationandPlacementManager.jpeg"
+  },
+  {
+    name: "Sachin S",
+    role: "IT & Technical",
+    image: "/Parvatha Team/ITandTechnicalManager.jpeg"
+  },
+  {
+    name: "Supriya S K",
+    role: "Digital Marketing",
+    image: "/Parvatha Team/DigitalMarketingandBrandingManager.jpeg"
+  },
+  {
+    name: "Rekha S",
     role: "Counselor",
     image: "/Parvatha Team/Counselor.jpeg"
   },
   {
-    name: "Operations Manager",
-    role: "Operation Manager",
-    image: "/Parvatha Team/Operation-Manager.jpeg"
-  },
-  {
-    name: "International Education & Placement Manager",
-    role: "International Education & Placement Manager",
-    image: "/Parvatha Team/InternationalEducationandPlacementManager.jpeg"
-  },
-  {
-    name: "Digital Marketing & Branding Manager",
-    role: "Digital Marketing & Branding Manager",
-    image: "/Parvatha Team/DigitalMarketingandBrandingManager.jpeg"
-  },
-  {
-    name: "IT & Technical Manager",
-    role: "IT & Technical Manager",
-    image: "/Parvatha Team/ITandTechnicalManager.jpeg"
-  },
-  {
-    name: "Assistant Counselor",
+    name: "Tejas Shalom P",
     role: "Assistant Counselor",
     image: "/Parvatha Team/Assisstant-Counselor.jpeg"
   },
   {
-    name: "Assistant Counselor",
+    name: "Prajwal L",
     role: "Assistant Counselor",
     image: "/Parvatha Team/Assisstant-Counsellor1.jpeg"
   },
   {
-    name: "Assistant Counselor",
+    name: "Suhas S Shet",
     role: "Assistant Counselor",
     image: "/Parvatha Team/Assisstant-Counselor2.jpeg"
   },
   {
-    name: "Assistant Counselor",
+    name: "Preethal P R",
     role: "Assistant Counselor",
     image: "/Parvatha Team/Assisstant-Counselor3.jpeg"
   },
   {
-    name: "Assistant Counselor",
+    name: "Kiran Kumar M S",
     role: "Assistant Counselor",
     image: "/Parvatha Team/Assisstant-Counselor4.jpeg"
   },
   {
-    name: "Assistant Counselor",
+    name: "Parinith B V",
     role: "Assistant Counselor",
     image: "/Parvatha Team/Assisstant-Counselor5.jpeg"
   },
   {
-    name: "Assistant Counselor",
+    name: "Chethan A M",
     role: "Assistant Counselor",
     image: "/Parvatha Team/Assisstant-Counselor6.jpeg"
   },

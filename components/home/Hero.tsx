@@ -379,7 +379,7 @@ export default function Hero() {
             <div className="animate-scroll-marquee flex items-center gap-16 md:gap-24 whitespace-nowrap w-max">
               {[...Array(2)].map((_, arrayIndex) => (
                 <div key={arrayIndex} className="flex items-center gap-16 md:gap-24">
-                  {["EduBridge", "CareerVault", "SkillAxis", "PlaceFirst", "NextGen", "TalentHub"].map(
+                  {["EduBridge"].map(
                     (brand, index) => (
                       <span
                         key={`${arrayIndex}-${index}`}

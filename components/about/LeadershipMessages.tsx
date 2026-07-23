@@ -34,22 +34,22 @@ const leaders = [
     ],
     signoff: "With best wishes,"
   },
-  // {
-  //   id: "roshan",
-  //   name: "Mr. Roshan B. P.",
-  //   role: "General Manager",
-  //   image: "/hero-bg.png",
-  //   greeting: "Dear Students, Parents, Job Seekers, Institutional Partners, and Valued Clients,",
-  //   paragraphs: [
-  //     "Greetings from Parvata Global Ventures LLP.",
-  //     "At Parvata Global Ventures LLP, we believe that every individual deserves the right guidance and the right opportunity to achieve their dreams. Our commitment is to provide professional, dependable, and result-oriented services that empower students, job seekers, educational institutions, and business partners.",
-  //     "As General Manager, I take immense pride in leading a dedicated team that works with passion, responsibility, and integrity. Whether it is helping students pursue higher education and overseas MBBS programs, connecting talented professionals with employment opportunities in India and abroad, supporting educational institutions with admissions and marketing, or delivering quality tourism and event management services, our focus is always on excellence and customer satisfaction.",
-  //     "We understand that every client's journey is unique. Therefore, we emphasize personalized guidance, transparent communication, timely support, and ethical practices in everything we do. Our goal is not only to meet expectations but to exceed them by delivering meaningful and lasting value.",
-  //     "The trust placed in us by our students, clients, partners, and well-wishers is our greatest strength. We remain committed to continuously improving our services, embracing innovation, and building long-term relationships based on mutual respect and confidence.",
-  //     "On behalf of our entire team, I sincerely thank you for choosing Parvata Global Ventures LLP. We look forward to supporting your aspirations and being a trusted partner in your journey toward education, career growth, and success."
-  //   ],
-  //   signoff: "With best regards,"
-  // },
+  {
+    id: "roshan",
+    name: "Mr. Roshan B. P.",
+    role: "General Manager",
+    image: "#",
+    greeting: "Dear Students, Parents, Job Seekers, Institutional Partners, and Valued Clients,",
+    paragraphs: [
+      "Greetings from Parvata Global Ventures LLP.",
+      "At Parvata Global Ventures LLP, we believe that every individual deserves the right guidance and the right opportunity to achieve their dreams. Our commitment is to provide professional, dependable, and result-oriented services that empower students, job seekers, educational institutions, and business partners.",
+      "As General Manager, I take immense pride in leading a dedicated team that works with passion, responsibility, and integrity. Whether it is helping students pursue higher education and overseas MBBS programs, connecting talented professionals with employment opportunities in India and abroad, supporting educational institutions with admissions and marketing, or delivering quality tourism and event management services, our focus is always on excellence and customer satisfaction.",
+      "We understand that every client's journey is unique. Therefore, we emphasize personalized guidance, transparent communication, timely support, and ethical practices in everything we do. Our goal is not only to meet expectations but to exceed them by delivering meaningful and lasting value.",
+      "The trust placed in us by our students, clients, partners, and well-wishers is our greatest strength. We remain committed to continuously improving our services, embracing innovation, and building long-term relationships based on mutual respect and confidence.",
+      "On behalf of our entire team, I sincerely thank you for choosing Parvata Global Ventures LLP. We look forward to supporting your aspirations and being a trusted partner in your journey toward education, career growth, and success."
+    ],
+    signoff: "With best regards,"
+  },
   {
     id: "sanjana",
     name: "Ms. Sanjana S. Shet",

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SocialRow from "@/components/ui/SocialIcons";
 
 export default function Footer() {
   return (
@@ -18,17 +19,7 @@ export default function Footer() {
           <p className="text-on-surface-variant max-w-xs font-body-md text-body-md">
             Redefining professional pathways with intentional design and global reach.
           </p>
-          {/* <div className="flex gap-4 pt-4">
-            <Link href="#" className="text-primary hover:opacity-70 transition-opacity">
-              <span className="material-symbols-outlined">face_nod</span>
-            </Link>
-            <Link href="#" className="text-primary hover:opacity-70 transition-opacity">
-              <span className="material-symbols-outlined">share</span>
-            </Link>
-            <Link href="#" className="text-primary hover:opacity-70 transition-opacity">
-              <span className="material-symbols-outlined">alternate_email</span>
-            </Link>
-          </div> */}
+          <SocialRow size="sm" className="pt-2" />
         </div>
 
         <div className="grid grid-cols-2 gap-8">
@@ -41,14 +32,14 @@ export default function Footer() {
               <Link href="/contact" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Contact</Link>
             </nav>
           </div>
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h4 className="font-bold text-on-surface uppercase tracking-widest text-xs">Legal</h4>
             <nav className="flex flex-col gap-2">
               <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Privacy Policy</Link>
               <Link href="#" className="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">Terms of Service</Link>
 
             </nav>
-          </div>
+          </div> */}
         </div>
 
         <div className="space-y-4">
@@ -72,7 +63,7 @@ export default function Footer() {
 
       <div className="border-t border-outline-variant/30 py-6 px-gutter">
         <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-[8px] md:text-[10px] text-center md:text-left">
-          <span>© {new Date().getFullYear()} Parvata Global Ventures. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Parvatha Global Ventures. All rights reserved.</span>
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
             <span>Davangere</span>
             <span className="font-medium">developed & maintained by <Link className="text-primary font-medium transition-colors duration-200 hover:text-secondary" target="_blank" rel="noopener noreferrer" href="https://weandyoumarketing.com">WeAndYouMarketing</Link></span>
